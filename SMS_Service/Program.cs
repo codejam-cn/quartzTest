@@ -4,11 +4,14 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 
 namespace SMS_Service
 {
     static class Program
     {
+       
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -17,7 +20,7 @@ namespace SMS_Service
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new Service1()
+                new SMSService()
             };
             ServiceBase.Run(ServicesToRun);
         }

@@ -1,6 +1,6 @@
 ﻿namespace SMS_Service
 {
-    partial class Service1
+    partial class SMSService
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.ServiceName = "Service1";
+            this.ServiceName = "SMS_Service";
         }
 
         #endregion

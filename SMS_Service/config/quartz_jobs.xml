@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" 
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <!--定义示例任务1 HYES_ExcuteNeedEditAssignBackJob-->
+    <job>
+      <name>HYES_ExcuteNeedEditAssignBackJob</name>
+      <group>HYEssayJobGroup</group>
+      <description>清理评审结果为需修改的论文摘要没有按期提交修改版本的论文摘要，自动拒绝</description>
+      <job-type>HYEssay.ServiceJobs.HYES_ExcuteNeedEditAssignBackJob,HYEssay.ServiceJobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+    <!--定义示例任务2 HYES_ExcuteNoAuditAssignBackJob-->
+    <job>
+      <name>HYES_ExcuteNoAuditAssignBackJob</name>
+      <group>HYEssayJobGroup</group>
+      <description>清理过期没评审的论文摘要任务，自动退回</description>
+      <job-type>HYEssay.ServiceJobs.HYES_ExcuteNoAuditAssignBackJob,HYEssay.ServiceJobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+    <!--定义示例任务3 HYES_NoAcceptAssignmentBackJob-->
+    <job>
+      <name>HYES_NoAcceptAssignmentBackJob</name>
+      <group>HYEssayJobGroup</group>
+      <description>清理过期没接受的任务，自动退回</description>
+      <job-type>HYEssay.ServiceJobs.HYES_NoAcceptAssignmentBackJob,HYEssay.ServiceJobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+
+    <job>
+      <name>HYES_ClearOverTimePaperFileJob</name>
+      <group>HYEssayJobGroup</group>
+      <description>清理过期下载任务的文件，清理任务</description>
+      <job-type>HYEssay.ServiceJobs.HYES_ClearOverTimePaperFileJob,HYEssay.ServiceJobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+   
+    <!--定义示例任务1 触发器 每30分钟执行一次任务-->
+    <trigger>
+      <cron>
+        <name>HYES_ExcuteNeedEditAssignBackTrigger</name>
+        <group>HYEssayJobTriggerGroup</group>
+        <job-name>HYES_ExcuteNeedEditAssignBackJob</job-name>
+        <job-group>HYEssayJobGroup</job-group>
+        <cron-expression>* 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    
+    <!--定义示例任务2 触发器 每30分钟执行一次任务-->
+    <trigger>
+      <cron>
+        <name>HYES_ExcuteNoAuditAssignBackJobTrigger</name>
+        <group>HYEssayJobTriggerGroup</group>
+        <job-name>HYES_ExcuteNoAuditAssignBackJob</job-name>
+        <job-group>HYEssayJobGroup</job-group>
+        <cron-expression>* 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    <!--定义示例任务3 触发器 每30分钟执行一次任务-->
+    <trigger>
+      <cron>
+        <name>HYES_NoAcceptAssignmentBackJobTrigger</name>
+        <group>HYEssayJobTriggerGroup</group>
+        <job-name>HYES_NoAcceptAssignmentBackJob</job-name>
+        <job-group>HYEssayJobGroup</job-group>
+        <cron-expression>* 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    <trigger>
+      <cron>
+        <name>HYES_ClearOverTimePaperFileJobTrigger</name>
+        <group>HYES_ClearOverTimePaperFileJobGroup</group>
+        <job-name>HYES_ClearOverTimePaperFileJob</job-name>
+        <job-group>HYEssayJobGroup</job-group>
+        <cron-expression>* * 0 * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>
