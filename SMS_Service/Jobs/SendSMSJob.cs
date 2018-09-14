@@ -21,13 +21,22 @@ namespace SMS_Service.Jobs
 
             //JobDataMap dataMap = context.JobDetail.JobDataMap;
             //string content = dataMap.GetString("jobSays");
-            //Console.WriteLine("作业执行，jobSays:" + content);
 
+            //Console.WriteLine("作业执行，jobSays:" + content);
             var url = $@"http://localhost:65298/api/pc/Transport/TransportSendSMSJob";
+
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("EventId", "627871354");
+            dic.Add("ThreshholdMinutes", "30");
+            dic.Add("MinuteSpan", "100000");
+
             var respStr = Post(url, new { EventId = 627871354, ThreshholdMinutes = 30, MinuteSpan = 100000 });
 
-            //Log4netHelper.Loger.Info($"respStr = {respStr} \n");
+            //var respStr = Post(url, dic);
+
+            Log4netHelper.Loger.Info($"respStr = {respStr} \n");
         }
+
 
         /// <summary>
         /// 指定Post地址使用Get 方式获取全部字符串
@@ -39,7 +48,7 @@ namespace SMS_Service.Jobs
             string result = "";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
-            req.ContentType = "application/json";
+            req.ContentType = "application/json;";
             #region 添加Post 参数
             StringBuilder builder = new StringBuilder();
             int i = 0;
@@ -78,6 +87,8 @@ namespace SMS_Service.Jobs
         /// <returns></returns>
         public static string Post(string url, object obj = null, int timeoutSeconds = 15)
         {
+
+
             if (string.IsNullOrWhiteSpace(url))
                 return "";
 

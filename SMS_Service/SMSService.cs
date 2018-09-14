@@ -30,10 +30,11 @@ namespace SMS_Service
                 .Build();
 
             ITrigger trigger1 = TriggerBuilder.Create()
-                .WithIdentity("触发器名称", "触发器组")
+                .WithIdentity("定时发短信触发器", "触发器组")
                 .StartNow()
                 .WithSimpleSchedule(x => x 
-                    .WithIntervalInMinutes(14)
+                    //.WithIntervalInMinutes(1)
+                    .WithIntervalInSeconds(20)
                     .RepeatForever())
                 .Build();
 
