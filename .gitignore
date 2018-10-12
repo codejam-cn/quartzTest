@@ -260,3 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 /packages
+/packages/Quartz.2.5.0
+/packages/Microsoft.CSharp.4.0.1
+/packages/Newtonsoft.Json.9.0.1
