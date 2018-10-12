@@ -17,13 +17,13 @@ namespace SMS_Service.Jobs
 
         public void Execute(IJobExecutionContext context)
         {
-            Log4netHelper.Loger.Info($"Listening for messages IJobExecutionContext." + DateTime.Now.ToShortDateString());
+            Log4netHelper.Loger.Info("Listening for messages IJobExecutionContext." + DateTime.Now.ToShortDateString());
 
             //JobDataMap dataMap = context.JobDetail.JobDataMap;
             //string content = dataMap.GetString("jobSays");
 
             //Console.WriteLine("作业执行，jobSays:" + content);
-            var url = $@"http://localhost:65298/api/pc/Transport/TransportSendSMSJob";
+            var url = @"http://localhost:65298/api/pc/Transport/TransportSendSMSJob";
 
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("EventId", "627871354");
@@ -34,7 +34,7 @@ namespace SMS_Service.Jobs
 
             //var respStr = Post(url, dic);
 
-            Log4netHelper.Loger.Info($"respStr = {respStr} \n");
+            Log4netHelper.Loger.Info(string.Format("respStr = {0} \n", respStr));
         }
 
 
